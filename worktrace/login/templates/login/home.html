@@ -1,0 +1,63 @@
+{% extends 'login/base.html' %}
+
+{% load staticfiles  %}
+{% block cssfile %}
+<link rel="stylesheet" type="text/css" href="{% static 'login/userstyle.css' %}" />
+{% endblock %}
+
+{% block title %}HOME{% endblock %}
+
+{% block javascript %}
+<script>
+jQuery(document).ready(function(){
+        jQuery.get("/ajax/validate_username/",function(data, status){
+
+            var number_of_rows = data["row"];
+            var number_of_cols = data["col"];
+
+            var table_body = '<table class="table table-hover">';
+            table_body += '<tr>';
+            table_body += '<th> ISSUE </th>';
+            table_body += '<th> ISSUE TYPE </th>';
+            table_body += '<th> PRIORITY </th>';
+            table_body += '<th> STATUS </th>';
+            table_body += '<th> LASTUPDATED </th>';
+            table_body+='</tr>';
+
+            for(var i=0;i<number_of_rows;i++){
+                table_body+='<tr>';
+                for(var j=0;j<number_of_cols;j++){
+                    table_body +='<td>';
+                    var issuekey = data["issues"][i][j].toString();
+                    table_body += issuekey;
+                    table_body +='</td>';
+                }
+                table_body+='</tr>';
+              }
+                table_body+='</table>';
+               $('#tableDiv').html(table_body);
+
+        });
+});
+
+
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+<h2> </h2>
+
+<div class="panel panel-success">
+        <div class="panel-heading"><b>ETOOLS TASKS</b></div>
+        <div class="panel-body">
+                <div id="tableDiv" style="margin-top: 40px">
+                        Data loading plz wait....
+                </div>
+        </div>
+
+</div>
+
+
+{% endblock %}

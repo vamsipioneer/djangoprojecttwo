@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+THIS IS DEL LIST VIEW
+
+{% for instance in objects_list %}
+<p>{{ instance.id }} -- <a href="{{ instance.get_absolute_url }}">{{ instance.title }}</a></p>
+{% endfor %}
+
+
+</body>
+</html>

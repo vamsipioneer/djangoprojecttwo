@@ -1,0 +1,117 @@
+
+{% extends 'login/base.html' %}
+
+<!-- Page title-->
+{% block title %} LOGIN {% endblock %}
+
+
+<!--CSS and JS CDN-->
+{% load staticfiles  %}
+{% block cssfile %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}" />
+{% endblock %}
+
+
+<!--JAVA SCRIPT-->
+
+{% block javascript %}
+
+<script>
+    $("#Qid").change(function () {
+      var Qid = $(this).val();
+
+      $.ajax({
+        url: '/ajax/validate_username/',
+        data: {
+          'Qid': Qid
+        },
+        dataType: 'json',
+        success: function (data) {
+          $("#authalert").remove();
+          if (data.status == 200) {
+            <!--alert(" Hello User : " + data.user);-->
+            $("#panelheading").html("Hello     " + data.user);
+            $("#pwd").removeAttr('disabled');
+            $("#subbtn").removeAttr('disabled');
+          }
+          else {
+            alert("User " + Qid +  "  does not exist");
+            $("#pwd").attr('disabled','disabled');
+            $("#subbtn").removeAttr('disabled');
+          }
+        }
+      });
+
+    });
+</script>
+
+{% endblock %}
+
+
+ <!--HEADER BAR NOT REQUIRED FOR LOGIN-->
+{% block appnavbar %}
+{% endblock %}
+
+
+
+{% block body %}
+
+{% if error_message %}
+      <div id="authalert" class="alert alert-warning">
+          <p><strong>{{ error_message }}</strong></p>
+      </div>
+{% endif %}
+
+
+<div class="container">
+    <div class="panel panel-info">
+      {% load staticfiles  %}
+      <div class="panelimage">
+          <a href="#"><img src="{% static 'login/images/image.png' %}" class="img-circle"></a>
+      </div>
+
+      <div id="panelheading" class="panel-heading">Hello User !.. Please Enter QuicklookID</div><br><br>
+      <div class="panel-body">
+
+            <form class="form-horizontal" action="/authenticate/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="QID">Quicklook:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="Qid" placeholder="QuicklookId" name="Qid">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="pwd">Password:</label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" disabled>
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <!--<div id="loginbutton" class="col-sm-offset-2 col-sm-10">-->
+                    <div class="col-sm-8">
+                    <button type="submit" id="subbtn" class="btn btn-primary pull-right" disabled>Submit</button>
+                    </div>
+                </div>
+
+            </form>
+      </div>
+      </div>
+    </div>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+{% endblock %}
+
+
+
+
+
+

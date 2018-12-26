@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles  %}
+    <meta charset="UTF-8">
+    <title>TEST APP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+
+    body {
+    position: relative;
+    background-image: url("/static/features/images/analytics.jpg") no-repeat;
+
+    }
+
+
+    .bs-example{
+        width: 300px;           /* Set this to your convenience */
+        height: 200px;          /* Set this to your convenience */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: 100px;     /* Half of height */
+        margin-left: -150px;
+    }
+
+    .btn{
+        float: right;
+    }
+
+    img {
+
+        padding: 8px;
+        width: 280px;
+    }
+
+    @media only screen and (max-width: 600px) {
+
+        .bs-example {
+            margin-top: 200px;
+
+        }
+    }
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+<div class="bs-example">
+
+    <img src="{% static 'features/images/image.png' %}">
+
+
+    <form action="/examples/actions/confirmation.php" method="post">
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+        </div><br>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+</body>
+</html>

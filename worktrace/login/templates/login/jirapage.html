@@ -1,0 +1,101 @@
+{% extends 'login/base.html' %}
+
+<!-- Page title-->
+{% block title %} JIRA ETOOLS {% endblock %}
+
+
+<!--CSS and JS CDN-->
+{% load staticfiles  %}
+{% block cssfile %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+     <link rel="stylesheet" type="text/css" href="{% static 'login/test.css' %}" />
+{% endblock %}
+
+<!--JAVA SCRIPT-->
+
+{% block javascript %}
+
+    <script>
+
+    function paging() {
+        jQuery('#mytable').DataTable( {
+            "pagingType": "full_numbers"
+        });
+    }
+
+
+    jQuery(document).ready(function(){
+            jQuery.get("/etoolsdata/",function(data, status){
+
+                var number_of_rows = data["row"];
+                var number_of_cols = data["col"];
+
+                var table_body = '<table id="mytable" class="table display" style="width:100%">';
+                table_body += '<thead>';
+                table_body += '<tr>';
+                table_body += '<th> ISSUE </th>';
+                table_body += '<th> SUMMARY </th>';
+                <!--table_body += '<th> ISSUE TYPE </th>';-->
+                table_body += '<th> PRIORITY </th>';
+                table_body += '<th> STATUS </th>';
+                table_body += '<th> LASTUPDATED </th>';
+                table_body+='</tr>';
+                table_body += '</thead>';
+                table_body += '<tbody>';
+
+                for(var i=0;i<number_of_rows;i++){
+                    table_body+='<tr>';
+                    for(var j=0;j<number_of_cols;j++){
+                        table_body +='<td>';
+
+                        var issuekey = data["issues"][i][j].toString();
+                        if (j == 0) {
+                          issueURL = 'https://*******/jira/browse/' + issuekey
+                          table_body += '<a href="' + issueURL + '">' + issuekey + '</a>'
+                          table_body +='</td>';
+                        } else {
+                            table_body += issuekey;
+                            table_body +='</td>';
+                        }
+
+                        }
+                    table_body+='</tr>';
+                  }
+                table_body += '</tbody>';
+                table_body+='</table>';
+                $('#tableDiv').html(table_body);
+                paging();
+            });
+    });
+
+</script>
+{% endblock %}
+
+
+{% block body %}
+
+<body>
+
+<div class="panel panel-success">
+    <div class="panel-heading"><b>{{ user }} : ETOOLS TASKS</b></div>
+    <br><br><br>
+        <div class="panel-body">
+
+            <div id="tableDiv">
+                Data is loading....
+            </div>
+        </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+
+{% endblock %}
+
+

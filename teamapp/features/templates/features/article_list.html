@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+THIS IS LIST VIEW
+
+{% for instance in object_list %}
+    <p>{{ instance.id }} - {{ instance.title }} </p>
+{% endfor %}
+
+
+</body>
+</html>
