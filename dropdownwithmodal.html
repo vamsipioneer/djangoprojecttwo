@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    .faqs_container_wrapper {
+  width: calc(100% - 40px);
+  padding: 0 0 20px 0;
+  margin: 20px 20px 0 20px;
+  background: #F1F1F1;
+  box-shadow: inset 0 1px #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  float: left;
+}
+
+.faq_container {
+  width: calc(100% - 40px);
+  padding: 0;
+  margin: 20px 20px 0 20px;
+  background: #DDD;
+  border-radius: 3px 3px 0 0;
+  float: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.faq_down-arrow {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  background: red;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.faq_up-arrow {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  background: blue;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.faq_container h3 {
+  width: 100%;
+  height: 40px;
+  padding: 0 5px;
+  margin: 0;
+  background: #D1D1D1;
+  box-shadow: 0 1px #E1E1E1;
+  border-bottom: 1px solid #333;
+  border-radius: 3px 3px 0 0;
+  float: left;
+  color: #333;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.faq_container:nth-of-type(2n) h3 {
+  background: #C1C1C1;
+}
+
+.faq_container h3 span {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 5px;
+  background: linear-gradient(#E67E22, #D35400);
+  box-shadow: inset 0 1px #F39C12;
+  border: 1px solid #E67E22;
+  border-radius: 50%;
+  float: left;
+  color: #FFF;
+  line-height: 29px;
+  text-align: center;
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.1);
+}
+
+.faq_container p {
+  width: 100%;
+  padding: 0 20px;
+  margin: 20px 0 0 0;
+  float: left;
+}
+
+.faq_container p:last-of-type {
+  padding: 0 20px 20px 20px;
+}
+
+.faq_container p a,
+.faq_container a {
+  color: #C0392B;
+}
+
+.faq_container p a:hover,
+.faq_container a:hover {
+  color: #E74C3C;
+}
+
+.answer {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+
+.modal-dialog {
+    width: 90%;
+    margin: 50px auto;
+}
+
+.no-border{
+  border:none;
+}
+
+
+</style>
+
+<body>
+
+
+
+<div class="faqs_container_wrapper">
+
+  <div class="faq_container">
+
+    <div class="faq_down-arrow"></div>
+    <div class="faq_up-arrow"></div>
+
+    <h3><span title="Question">Q</span> Post question here</h3>
+    <div class="answer">
+    <p><b><i>Answer</i>:</b> Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer
+          here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here.
+    </p>
+    <p>Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here.
+      Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here. Post answer here.
+
+
+          I am working on a dynamically resizing page.  I will be placing the Accordion next to a media player that will resize with the page.  Because I need to maintain the aspect ratio, the width must be adjusted along with the height.  I need the Accordion height to match.  I have written javascript expressions to do this, but it is not working with the jQuery UI plugin.
+
+    I set the expression to resize the div containing the Accordion and set autoFill to true.  This works on page load, but does not resize if the page size is adjusted after (unless it is refreshed).
+
+    I was starting to try some work-arounds, but I thought there may be some simple solution that I am missing.
+        </p>
+    </div>
+  </div>
+
+  <div class="faq_container">
+    <div class="faq_down-arrow"></div>
+    <div class="faq_up-arrow"></div>
+    <h3><span title="Question">Q</span> Post question here</h3>
+    <div class="answer">
+        <p><b><i>Answer</i>:</b> Post answer here</p>
+    </div>
+  </div>
+
+  <div class="faq_container">
+        <div class="faq_down-arrow"></div>
+        <div class="faq_up-arrow"></div>
+        <h3><span title="Question">Q</span> Vamsi post..</h3>
+        <div class="answer">
+
+
+              <div class="container">
+                  <!-- Trigger the modal with a button -->
+                  <button type="submit" id="showlog" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">SHOW LOG</button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header no-border">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title" style="text-align:center;">ANALYSIS REPORT :</h4>
+                        </div>
+
+
+                        <div class="modal-body">
+
+
+<div class="container-fluid">
+  <div class="row">
+		<div class="col-lg-6">
+		<h3 style="text-align:center;background-color:blue;"> BEFORE POWER DOWN </h3>
+		  <pre>
+
+                                    Windows IP Configuration
+
+
+                                    Ethernet adapter Ethernet:
+
+                                       Media State . . . . . . . . . . . : Media disconnected
+                                       Connection-specific DNS Suffix  . :
+
+                                    Wireless LAN adapter Local Area Connection* 2:
+
+                                       Media State . . . . . . . . . . . : Media disconnected
+                                       Connection-specific DNS Suffix  . :
+
+                                    Wireless LAN adapter Local Area Connection* 4:
+
+                                       Media State . . . . . . . . . . . : Media disconnected
+                                       Connection-specific DNS Suffix  . :
+
+                                    Wireless LAN adapter Wi-Fi:
+
+                                       Connection-specific DNS Suffix  . :
+                                       Subnet Mask . . . . . . . . . . . : 255.255.255.0
+                                       Default Gateway . . . . . . . . . : 192.168.0.1
+
+                                    Ethernet adapter Bluetooth Network Connection:
+
+                                       Media State . . . . . . . . . . . : Media disconnected
+                                       Connection-specific DNS Suffix  . :
+
+
+                                    </pre>
+
+
+		</div>
+		<div class="col-lg-6">
+		<h3 style="text-align:center;background-color:blue;"> AFTER POWER DOWN </h3>
+		  <pre>
+
+                                    Windows IP Configuration
+
+
+                                    Ethernet adapter Ethernet:
+
+                                       Media State . . . . . . . . . . . : Media disconnected
+                                       Connection-specific DNS Suffix  . :
+
+                                    Wireless LAN adapter Local Area Connection* 2:
+
+                                       Media State . . . . . . . . . . . : Media disconnected
+                                       Connection-specific DNS Suffix  . :
+
+                                    Wireless LAN adapter Local Area Connection* 4:
+
+                                       Media State . . . . . . . . . . . : Media disconnected
+                                       Connection-specific DNS Suffix  . :
+
+                                    Wireless LAN adapter Wi-Fi:
+
+                                       Connection-specific DNS Suffix  . :
+                                       Subnet Mask . . . . . . . . . . . : 255.255.255.0
+                                       Default Gateway . . . . . . . . . : 192.168.0.1
+
+                                    Ethernet adapter Bluetooth Network Connection:
+
+                                       Media State . . . . . . . . . . . : Media disconnected
+                                       Connection-specific DNS Suffix  . :
+
+                                    </pre>
+		</div>
+  </div>
+</div>
+
+                        </div>
+
+
+
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    </div>
+  </div>
+
+
+  <div class="faq_container">
+    <div class="faq_down-arrow"></div>
+    <div class="faq_up-arrow"></div>
+    <h3><span title="Question">Q</span> Post question here</h3>
+    <div class="answer">
+        <p><b><i>Answer</i>:</b> Post answer here</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+
+
+$('.faq_container').on('click', function (e) {
+    var $this = $(this);
+    if (e.target.tagName == 'BUTTON'){
+         <!--alert("BUTTONNNNNNN");-->
+        <!--$( '#myModal' ).modal('show');-->
+    }
+    else {
+        <!--alert("ELSEEEEEEEEEEE");-->
+    	$(this).find('.faq_up-arrow, .faq_down-arrow').toggle();
+        if ( $(this).hasClass("active")) {
+            $(this).find(".answer").slideUp();
+            $(this).removeClass("active");
+        } else {
+            $(this).find(".answer").slideDown();
+            $(this).addClass("active");
+        }
+    }
+});
+
+
+
+<!--$('.faq_container').on('click', function () {-->
+    <!--var $this = $(this);-->
+    <!--alert("This is : " + this);-->
+    <!--console.log(Object.getOwnPropertyNames(this));-->
+	<!--$(this).find('.faq_up-arrow, .faq_down-arrow').toggle();-->
+	<!--if ( $(this).hasClass("active")) {-->
+		<!--$(this).find(".answer").slideUp();-->
+        <!--$(this).removeClass("active");-->
+	<!--} else {-->
+		<!--$(this).find(".answer").slideDown();-->
+        <!--$(this).addClass("active");-->
+	<!--}-->
+<!--});-->
+
+
+<!--function showlogme(evt) {-->
+     <!--alert("&&&&&&&&&&&&&");-->
+     <!--console.log(Object.getOwnPropertyNames(this));-->
+    <!---->
+    <!--evt.stopImmediatePropagation();-->
+<!--}-->
+
+
+</script>
+
+</body>
+</html>
